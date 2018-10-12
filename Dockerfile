@@ -1,4 +1,4 @@
-FROM lunalabs/ubuntu18
+FROM lunalabs/ubuntu18:light
 
 #install php7.2 and dependecies
 RUN apt-get -y install php7.2 
