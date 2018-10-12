@@ -2,6 +2,7 @@ FROM lunalabs/ubuntu18:light
 
 #install php7.2 and dependecies
 RUN apt-get update
+RUN apt-get -y upgrade
 RUN apt-get -y install php7.2 
 RUN apt-get -y install libapache2-mod-php7.2
 RUN apt-get -y install php7.2-xml 
