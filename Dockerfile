@@ -20,3 +20,7 @@ RUN apt-get -y install php7.2-zip
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
 
+# remove unused packages
+RUN apt-get -y autoclean
+RUN apt-get -y clean
+RUN apt-get -y autoremove
