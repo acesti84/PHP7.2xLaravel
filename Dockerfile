@@ -1,6 +1,7 @@
 FROM lunalabs/ubuntu18
 
 #install php7.2 and dependecies
+USER root
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get -y install php7.2 
@@ -21,12 +22,22 @@ RUN apt-get -y install php-mailparse
 RUN apt-get -y install sendmail
 RUN apt-get -y install cmake
 RUN apt-get -y install libpng-dev
+RUN mkdir -p -m777 /sorgenti
+RUN chown www-data:www-data /sorgenti
 
 # install node 8.x
+USER root
+WORKDIR /sorgenti
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
 
+# download composer
+USER www-data
+WORKDIR /sorgenti
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+
 # install zint (barcode generator)
+USER root
 RUN mkdir -p /tmp/zint
 WORKDIR /tmp/zint
 RUN wget https://sourceforge.net/projects/zint/files/zint/2.6.3/zint-2.6.3_rc2.src.tar.gz
