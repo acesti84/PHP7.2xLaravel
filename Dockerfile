@@ -12,10 +12,12 @@ RUN apt-get -y install php7.2-json
 RUN apt-get -y install php7.2-curl 
 RUN apt-get -y install php7.2-cli 
 RUN apt-get -y install php7.2-common 
+RUN apt-get -y install php-apcu
 RUN apt-get -y install php-pear
 RUN apt-get -y install php7.2-gd 
 RUN apt-get -y install libapache2-mod-php7.2 
 RUN apt-get -y install php7.2-zip
+RUN apt-get -y install php-mailparse
 RUN apt-get -y install sendmail
 RUN apt-get -y install cmake
 RUN apt-get -y install libpng-dev
@@ -33,3 +35,5 @@ WORKDIR /tmp/zint/zint-2.6.3_rc2.src
 RUN cmake .
 RUN make
 RUN make install
+
+
