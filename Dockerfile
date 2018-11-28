@@ -35,6 +35,7 @@ RUN apt-get install -y nodejs
 USER www-data
 WORKDIR /sorgenti
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php
 
 # install zint (barcode generator)
 USER root
@@ -46,5 +47,6 @@ WORKDIR /tmp/zint/zint-2.6.3_rc2.src
 RUN cmake .
 RUN make
 RUN make install
+
 
 
