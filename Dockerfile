@@ -35,6 +35,10 @@ RUN apt-get install -y nodejs
 USER www-data
 WORKDIR /sorgenti
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+
+# setup composer
+USER root
+WORKDIR /sorgenti
 RUN php composer-setup.php
 
 # install zint (barcode generator)
