@@ -19,9 +19,12 @@ RUN apt-get -y install php7.2-gd
 RUN apt-get -y install libapache2-mod-php7.2 
 RUN apt-get -y install php7.2-zip
 RUN apt-get -y install php-mailparse
+RUN apt-get -y install php-soap
 RUN apt-get -y install sendmail
 RUN apt-get -y install cmake
 RUN apt-get -y install libpng-dev
+RUN apt-get -y install composer
+RUN apt-get -y install unzip
 RUN mkdir -p -m777 /sorgenti
 RUN chown www-data:www-data /sorgenti
 
@@ -30,16 +33,6 @@ USER root
 WORKDIR /sorgenti
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
-
-# download composer
-USER www-data
-WORKDIR /sorgenti
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-
-# setup composer
-USER root
-WORKDIR /sorgenti
-RUN php composer-setup.php
 
 # install zint (barcode generator)
 USER root
